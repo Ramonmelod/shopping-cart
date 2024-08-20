@@ -15,24 +15,26 @@ public class CarrinhoDeCompras {
     
     }
     public void removerItem(String nome){
+    List <Item> itensARemover = new ArrayList<>();
+    for (Item item : carrinho) {
+        if (item.getNome().equalsIgnoreCase(nome)) {
+            itensARemover.add(item);
+        }
+    }
+    carrinho.removeAll(itensARemover);
 
     }
     public double calcularValorTotal(){
-
-        return 25.5;
+        double soma = 0;
+             for (int i = 0; i < carrinho.size(); i++) {
+            soma += (carrinho.get(i).getPreco())*carrinho.get(i).getQuantidade();
+        }
+     
+        return soma;
+    }
+    public void exibirItens(int i){
+        System.out.println(carrinho);
 
     }
-    public void exibirItens(){
-        System.out.println(carrinho.get(0)+ " " + carrinho.get(1));
 
     }
-
-    }
-
-
-    /*
-    adicionarItem(String nome, double preco, int quantidade): Adiciona um item ao carrinho com o nome, preço e quantidade especificados.
-    removerItem(String nome): Remove um item do carrinho com base no seu nome.
-    calcularValorTotal(): Calcula e retorna o valor total do carrinho, levando em consideração o preço e a quantidade de cada item.
-    exibirItens(): Exibe todos os itens presentes no carrinho, mostrando seus nomes, preços e quantidades.
- */
